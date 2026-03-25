@@ -24,12 +24,6 @@ This project helps users track their spending habits and maintain financial awar
 
 ---
 
-## Screenshots
-
-*(Add screenshots of your project here)*
-
----
-
 ## How to Run the Project
 
 1. Clone the repository:
