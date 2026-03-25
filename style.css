@@ -1,0 +1,366 @@
+*{
+	margin:0px;
+	padding:0px;
+	box-sizing:border-box;
+}
+
+body{
+	font-family: 'poppins' , sans-serif;
+	background: linear-gradient(135deg, #eef2ff, #f8fafc);
+	padding: 20px;
+}
+
+.maindiv{
+	height: 700px;
+	width: 75%;
+	background-color: transparent;
+	margin: 20px auto;
+	max-width: 1100px;
+}
+
+.showdiv{
+	height: 135px;
+	width: 95%;
+	background-color: transparent;
+	margin-left: 28px;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 5px;
+}
+
+.contdiv{
+	display: flex;
+	height: 565px;
+	width: 95%;
+	margin-left: 28px;
+	margin-top: 10px;
+}
+
+.adddiv{
+	height: 95%;
+	width: 48%;
+	background-color: #f9fafb;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+	padding: 15px;
+}
+
+.expdiv{
+	height: 95%;
+	width: 51%;
+	margin-left: 10px;
+	background-color: #fff9f9;
+	border-radius: 12px;
+	border: 1px solid #d1d5db;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+	padding-top: 0px;
+	overflow-x: scroll;
+}
+
+.alldiv{
+	height: 100%;
+	width: 30%;
+	padding: 15px;
+	background: linear-gradient(135deg, #eef2ff, #f9fafb);
+	border-radius: 12px;
+	border: 1px solid #d1d5db;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.alldiv:hover{
+	transform: translateY(-3px);
+}
+
+#income{
+	background: linear-gradient(135deg, #4f46e5, #6366f1);
+	color: white;
+}
+
+#expense{
+	background: linear-gradient(135deg, #ef4444, #f87171);
+	color: white;
+}
+
+#budget{
+	background: linear-gradient(135deg, #22c55e, #4ade80);
+	color: white;
+}
+
+.allbtn{
+	height: 100%;
+	width: 45%;
+	flex: 1;
+	border-radius: 20px;
+	border: 1px solid #ddd;
+	background: #e5e7eb;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.allbtn.active{
+	background: #4f46e5;
+	color: white;
+}
+
+#inc{
+	margin-left: 25px;
+	background-color: #22c55e;
+	color: white;
+}
+
+
+#togbtn{
+	width: 100%;
+	height: 10%;
+	display: flex;
+	gap: 10px;
+	padding: 10px;
+	background: transparent;
+}
+
+.feadiv{
+	height: 280px;
+	width: 90%;
+	margin-left: 30px;
+	margin-top: 10px;
+}
+
+#addhead{
+	margin-left: 40%;
+}
+
+#selsecbtn{
+	margin-left: 30px;
+}
+
+.inputs{
+	height: 42px;
+	width: 90%;
+	margin: 10px 0;
+	border-radius: 10px;
+	border: 1px solid #d1d5db;
+	padding: 10px;
+	font-size: 14px;
+	margin-left: 10px;
+}
+
+.inputs:focus{
+	border-color: #4f46e5;
+	outline: none;
+}
+
+#catg{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 30px;
+	width: 95px;
+	margin-left: 10px;
+	border-radius: 6px;
+}
+
+#datebox{
+	width: 40%;
+}
+
+#btndiv{
+	height: 80px;
+	width: 90%;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+
+.srbtn{
+	height: 45px; 
+	width: 30%;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: .3s;
+}
+
+.srbtn:hover{
+	transform: translateY(-2px);
+	opacity: .9;
+}
+
+#submit,#edit{
+	margin-left: 10px;
+}
+
+#submit{
+	border-color: #22c55e;
+	color: #22c55e;
+}
+
+#submit:hover{
+	background-color: #22c55e;
+	color: white;
+}
+
+#edit{
+	border-color: #4f46e5;
+	color: #4f46e5;
+}
+
+#edit:hover{
+	background-color: #4f46e5;
+	color: white;
+}
+
+#resetbtn{
+	background-color: #e5e7eb;
+}
+
+#resetbtn:hover{
+	background-color: #e5e7eb;
+}
+
+.heading{
+	margin-left: 35%;
+}
+.num{
+	margin-left: 45%;
+	margin-top: 20px;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+#specialbtn{
+	height: 50px;
+	display: flex;
+	gap: 10px;
+	background: #fff9f9;
+	border-radius: 12px;
+	margin-bottom: 10px;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.feabtns{
+	height: 50px;
+	width: 24%;
+	flex: 1;
+	border-radius: 8px;
+	border: none;
+	background-color: #4f46e5;
+	color: white;
+	cursor: pointer;
+}
+
+.feabtns:hover {
+  background-color: #4338ca;
+}
+
+#taskdiv{
+	height: 90%;
+	width: 98%;
+	margin-left: 5px;
+}
+
+#list{
+	height: auto;
+	width: 100%;
+	padding: 12px;
+	display: grid;
+	grid-template-columns: 1.6fr 1fr 1fr 1fr 1.8fr;
+	font-size: 14px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+	align-items: center;
+	margin-bottom: 8px;
+	border-radius: 8px;
+	border: 1px solid #e5e7eb;
+}
+
+#list:hover{
+	background-color: #f9fafb;
+}
+
+.feadiv, #btndiv, #taskdiv{
+	background-color: transparent;
+}
+
+.task-actions{
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+
+.taskbtn{
+	padding: 5px 10px;
+	font-size: 12px;
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	font-weight: 500;
+	transition: 0.2s;
+}
+
+#editTask{
+	background: transparent;
+	border: 1px solid #4f46e5;
+	color: #4f46e5;
+}
+
+#editTask:hover{
+	background: #4f46e5;
+	color: white;
+}
+
+#delTask{
+	background: transparent;
+	border: 1px solid #ef4444;
+	color: #ef4444;
+}
+
+#delTask:hover{
+	background: #ef4444;
+	color: white;
+}
+
+.taskRow{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px;
+	margin-bottom: 8px;
+	border-radius: 10px;
+	background: white;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+	transition: 0.2s;
+}
+
+.taskRow:hover{
+	transform: translateY(-2px);
+}
+
+.incomeRow{
+	border-left: 5px solid #22c55e;
+}
+
+.expenseRow{
+	border-left: 5px solid #ef4444;
+}
+
+.amount{
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.task-actions button{
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.taskRow div{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+
+

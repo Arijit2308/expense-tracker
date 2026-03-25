@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EXPENSE TRACKER APP</title>
+		<link rel = "stylesheet" href = "style.css">
+	</head>
+	<body>
+		<div class = "maindiv">
+			<div class = "showdiv">
+				<div class = "alldiv" id = "income">
+				<h2 class = "heading">INCOME</h2>
+				<h2 class = "num" id = "incnum">0</h2>
+				
+				</div>
+				<div class = "alldiv" id = "expense">
+				<h2 class = "heading">EXPENSE</h2>
+				<h2 class = "num" id = "expnum">0</h2>
+				</div>
+				<div class = "alldiv" id = "budget">
+				<h2 class = "heading">BUDGET</h2>
+				<h2 class = "num" id = "bugnum">0</h2>
+				</div>
+			</div>
+			<div class = "contdiv">
+				<div class = "adddiv">
+					<h3 id = "addhead">ADD NEW</h3>
+					<p id = "selsecbtn">ENTRY TYPE</p>
+					<div id = "togbtn">
+						<button class = "allbtn" id = "inc" onclick = "addincome()">INCOME</button>
+						<button class = "allbtn" id = "exp" onclick = "addexpense()">EXPENSE</button>
+					</div>
+					<form>
+						<div class = "feadiv">
+							<p>DESCRIPTION</p>
+							<input type = "text" placeholder = "enter a short description" class = "inputs" id = "incinput">
+							<p>AMOUNT</p>
+							<input type = "number" placeholder = "enter the amount" class = "inputs" id = "amountinput">
+							<p>CATAGORY</p>
+							<select name = "catagory" id = "catg">
+								<option>Salary</option>
+								<option>Bonus</option>
+								<option>Refund</option>
+								<option>Business</option>
+								<option>Freelancing</option>
+								<option>Others</option>
+							</select>
+							<p>DATE</p>
+							<input type = "date" class = "inputs" id = "datebox">
+						</div>
+						<div id = "btndiv">
+							<input class = "srbtn" value = "Submit" type = "button" id = "submit" onclick = "submittask()"/>
+							<input class = "srbtn" value = "Edit" type = "button" id = "edit" onclick = "editTask()"/>
+							<input type="reset" class="srbtn" id = "resetbtn" />
+						</div>
+					</form>
+				</div>
+				<div class = "expdiv">
+					<div id = "specialbtn">
+						<button class = "feabtns" onclick = "showall()">all</button>
+						<button class = "feabtns" onclick = "showExpense()">expenses</button>
+						<button class = "feabtns" onclick = "showIncome()">incomes</button>
+						<button class = "feabtns" onclick = "delall()">del all</button>
+					</div>
+					<div id = "taskdiv">
+						<ul id = "task">
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>
