@@ -13,6 +13,8 @@ This project helps users track their spending habits and maintain financial awar
 * View balance in real-time
 * Transaction history
 * Simple and user-friendly interface
+* Mobile responsive design
+* Dark mode
 
 ---
 
@@ -57,14 +59,6 @@ expense-tracker/
 │── script.js
 │── README.md
 ```
-
----
-
-## Future Improvements
-
-* Add charts for expense analysis
-* Mobile responsive design improvements
-* Dark mode
 
 ---
 

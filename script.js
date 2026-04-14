@@ -16,6 +16,7 @@ window.onload = function(){
 	let today = new Date().toISOString().split("T")[0];
 	datebox.value = today;
 	datebox.max = today;
+	addincome();
 }
 
 function addincome(){
@@ -27,7 +28,7 @@ function addincome(){
 	inc.style.color = "white";
 	exp.style.backgroundColor = "white";
 	exp.style.color = "black";
-	options = '<option>Salary</option><option>Bonus</option><option>Refund</option><option>Business</option><option>Freelancing</option><option>Others</option>';
+	let options = '<option>Salary</option><option>Bonus</option><option>Refund</option><option>Business</option><option>Freelancing</option><option>Others</option>';
 	catg.innerHTML = options;
 }
 
@@ -40,16 +41,16 @@ function addexpense(){
 	let inc = document.getElementById("inc");
 	let exp = document.getElementById("exp");
 	let catg = document.getElementById("catg");
-	if(bugnum <= 0 || bugnum < Number(income)){
+	if(income && (bugnum <= 0 || bugnum < Number(income))){
 		window.alert("please add or adjust your budget");
 		addincome();
 		return;
 		}
 	inc.style.backgroundColor = "white";
 	inc.style.color = "black";
-	exp.style.backgroundColor = "blue";
+	exp.style.backgroundColor = "#3b82f6";
 	exp.style.color = "white";
-	options = '<option>Food</option><option>Transport</option><option>Rent</option><option>Shopping</option><option>Medical</option><option>Others</option>';
+	let options = '<option>Food</option><option>Transport</option><option>Rent</option><option>Shopping</option><option>Medical</option><option>Others</option>';
 	catg.innerHTML = options;
 	
 }
@@ -59,7 +60,6 @@ function submittask(){
 	let expnum = Number(document.getElementById("expnum").innerText);
 	let bugnum = Number(document.getElementById("bugnum").innerText);
 	let exp = document.getElementById("exp");
-	let resetbtn = document.getElementById("resetbtn");
 	let datebox = document.getElementById("datebox");
 	let expdiv = document.getElementById("expnum");
 	let bugdiv = document.getElementById("bugnum");
@@ -80,7 +80,7 @@ function submittask(){
 	}
 	let allobj = {};
 	allobj.Description = String(description);
-	allobj.Amount = String(income);
+	allobj.Amount = Number(income);
 	allobj.Time = String(time);
 	allobj.Catagory = String(catagory);
 	if(checkit == true){
@@ -98,7 +98,6 @@ function submittask(){
 		incdiv.innerText = incnum + Number(income);
 		bugdiv.innerText = bugnum + Number(income);
 		buildTask("A");
-		resetbtn.addEventListener("click", defaultDate());
 	}
 	else if(checkit == false){
 		if(bugnum <= 0 || bugnum < Number(income)){
@@ -112,8 +111,17 @@ function submittask(){
 		expdiv.innerText = expnum + Number(income);
 		bugdiv.innerText = bugnum - Number(income);
 		buildTask("A");
-		resetbtn.addEventListener("click", defaultDate());
 		return;
+	}
+	defaultDate();
+}
+
+function getTypeClass(type){
+	if(type && type.toLowerCase().trim() == "income"){
+		return "incomeRow";
+	}
+	else{
+		return "expenseRow";
 	}
 }
 
@@ -123,22 +131,25 @@ function buildTask(buildType){
 	if(buildType == "A"){
 		for(let idx = 0; idx<allArr.length; idx++){
 		let Task = allArr[idx];
-		list += `<div id = "list" class ="taskRow"><div>D:<div>${Task.Description}</div></div><div>A: <div>${Task.Amount}</div></div><div>C: <div>${Task.Catagory}</div></div><div>T: <div>${Task.Time}</div></div><div class = "task-actions"><button class = "taskbtn" id = "editTask" onclick = "preEdit(${Task.uniqueId})" >EDIT</button><button class = "taskbtn" id = "delTask" onclick="deleteTask(${Task.uniqueId})">DELETE</button></div></div>`;
+		let typeClass = getTypeClass(Task.Type);
+		list += `<div id = "list" class ="taskRow ${typeClass}"><div>D:<div>${Task.Description}</div></div><div>A: <div>${Task.Amount}</div></div><div>C: <div>${Task.Catagory}</div></div><div>T: <div>${Task.Time}</div></div><div class = "task-actions"><button class = "taskbtn" id = "editTask" onclick = "preEdit(${Task.uniqueId})" >EDIT</button><button class = "taskbtn" id = "delTask" onclick="deleteTask(${Task.uniqueId})">DELETE</button></div></div>`;
 		}
 	}
 	else if(buildType == "I"){
 		for(let idx = 0; idx<allArr.length; idx++){
 			let Task = allArr[idx];
+			let typeClass = getTypeClass(Task.Type);
 			if(Task.Type == "income"){
-				list += `<div id = "list" class ="taskRow"><div>D:<div>${Task.Description}</div></div><div>A: <div>${Task.Amount}</div></div><div>C: <div>${Task.Catagory}</div></div><div>T: <div>${Task.Time}</div></div><div class = "task-actions"><button class = "taskbtn" id = "editTask" onclick = "preEdit(${Task.uniqueId})" >EDIT</button><button class = "taskbtn" id = "delTask" onclick="deleteTask(${Task.uniqueId})">DELETE</button></div></div>`;
+				list += `<div id = "list" class ="taskRow ${typeClass}"><div>D:<div>${Task.Description}</div></div><div>A: <div>${Task.Amount}</div></div><div>C: <div>${Task.Catagory}</div></div><div>T: <div>${Task.Time}</div></div><div class = "task-actions"><button class = "taskbtn" id = "editTask" onclick = "preEdit(${Task.uniqueId})" >EDIT</button><button class = "taskbtn" id = "delTask" onclick="deleteTask(${Task.uniqueId})">DELETE</button></div></div>`;
 			}
 		}
 	}
 	else{
 		for(let idx = 0; idx<allArr.length; idx++){
 			let Task = allArr[idx];
+			let typeClass = getTypeClass(Task.Type);
 			if(Task.Type == "expense"){
-				list += `<div id = "list" class ="taskRow"><div>D:<div>${Task.Description}</div></div><div>A: <div>${Task.Amount}</div></div><div>C: <div>${Task.Catagory}</div></div><div>T: <div>${Task.Time}</div></div><div class = "task-actions"><button class = "taskbtn" id = "editTask" onclick = "preEdit(${Task.uniqueId})" >EDIT</button><button class = "taskbtn" id = "delTask" onclick="deleteTask(${Task.uniqueId})">DELETE</button></div></div>`;
+				list += `<div id = "list" class ="taskRow ${typeClass}"><div>D:<div>${Task.Description}</div></div><div>A: <div>${Task.Amount}</div></div><div>C: <div>${Task.Catagory}</div></div><div>T: <div>${Task.Time}</div></div><div class = "task-actions"><button class = "taskbtn" id = "editTask" onclick = "preEdit(${Task.uniqueId})" >EDIT</button><button class = "taskbtn" id = "delTask" onclick="deleteTask(${Task.uniqueId})">DELETE</button></div></div>`;
 			}
 		}
 	}
@@ -154,12 +165,11 @@ function showData(dataArr){
 	let list = "";
 	for (let idx = 0; idx < dataArr.length; idx++){
 		let Task = dataArr[idx];
-		list += `<div id = "list" class ="taskRow"><div>D:<div>${Task.Description}</div></div><div>A: <div>${Task.Amount}</div></div><div>C: <div>${Task.Catagory}</div></div><div>T: <div>${Task.Time}</div></div><div class = "task-actions"><button class = "taskbtn" id = "editTask" onclick = "preEdit(${Task.uniqueId})">EDIT</button><button class = "taskbtn" id = "delTask" onclick="deleteTask(${Task.uniqueId})">DELETE</button></div></div>`;
+		let typeClass = getTypeClass(Task.Type);
+		list += `<div id = "list" class ="taskRow ${typeClass}"><div>D:<div>${Task.Description}</div></div><div>A: <div>${Task.Amount}</div></div><div>C: <div>${Task.Catagory}</div></div><div>T: <div>${Task.Time}</div></div><div class = "task-actions"><button class = "taskbtn" id = "editTask" onclick = "preEdit(${Task.uniqueId})">EDIT</button><button class = "taskbtn" id = "delTask" onclick="deleteTask(${Task.uniqueId})">DELETE</button></div></div>`;
 	}
 	Taskdiv.innerHTML = list;
 }
-
-showData(allArr);
 
 function delall(){
 	let expdiv = document.getElementById("expnum");
@@ -178,9 +188,6 @@ function preEdit(uniqueId){
 	let amountinput = document.getElementById("amountinput");
 	let incinput = document.getElementById("incinput");
 	let catagory = document.getElementById("catg");
-	let submitbtn = document.getElementById("submit")
-	let resetbtn = document.getElementById("resetbtn");
-	resetbtn.addEventListener("click", defaultDate());
 	currentEditId = uniqueId;
 	for(let i = 0 ; i < allArr.length ; i++){
 		let Task = allArr[i];
@@ -227,21 +234,19 @@ function editTask(){
 		let Task = allArr[i];
 		if(Task.uniqueId == currentEditId){
 			Task.Description = String(description);
-			Task.Amount = String(income);
 			Task.Time = String(time);
 			Task.Catagory = String(catagory);
 			localStorage.setItem("expenses", JSON.stringify(allArr));
+			calculateTotals();
 			}
 		}
 
 		buildTask("A");
-
-		document.getElementById("resetbtn").addEventListener("click", defaultDate());
 		document.getElementById("amountinput").disabled = false;
 		document.getElementById("submit").disabled = false;
 
 		currentEditId = null;
-	}
+}
 
 // to delete individual items
 function deleteTask(uniqueId){
@@ -250,7 +255,6 @@ function deleteTask(uniqueId){
 	let incdiv = document.getElementById("incnum");
 	
 	let tempArr = [...allArr];
-    let deleteItem;
 
 	for(let i = 0; i < tempArr.length; i++){
 		let tasks = tempArr[i];
@@ -276,7 +280,7 @@ function deleteTask(uniqueId){
     }
 	
 	if(bugnum < 0){
-        window.alert("Cannot delete this income otherwise Expenses will exceed budget!");
+        window.alert("This action will make expenses exceed your budget!");
         return;
     }
 	
@@ -328,4 +332,26 @@ function defaultDate(){
 	else{
 		let catagory = document.getElementById("catg").value = "Food";
 	}
+	document.getElementById("amountinput").disabled = false;
 }
+
+const toggleBtn = document.getElementById("theme-toggle");
+let savedTheme = localStorage.getItem("theme");
+
+if(savedTheme == "dark"){
+	document.body.classList.add("dark");
+	toggleBtn.checked = true;
+}
+
+toggleBtn.addEventListener("change", function(){
+	if(toggleBtn.checked){
+		document.body.classList.add("dark");
+		localStorage.setItem("theme", "dark");
+	} 
+	else {
+		document.body.classList.remove("dark");
+		localStorage.setItem("theme", "light");
+	}
+});
+
+document.getElementById("resetbtn").addEventListener("click", defaultDate);
